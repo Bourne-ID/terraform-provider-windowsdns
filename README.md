@@ -3,8 +3,10 @@
 This enables Terraform to control Microsoft DNS servers, it utilises a Go library that implements WinRM and 
 dynamically creates PowerShell scripts to make changes required.
 
-At present it only supports A and CNAME records, this is because of my current requirements for needing this.
+At present it only supports A and CNAME records over HTTP and HTTPS. 
 
+## Incompatibility with Parent Fork
+Changes to this fork will break any Terraform usage on the parent fork - specifically the ID field for Terraform has changed to help detect drift and be more flexible in a large environment.ds
 
 ## Usage
 ### Provider configuration
@@ -49,9 +51,9 @@ resource "windows-dns_record" "test99" {
 
 The library this uses can be found [here][1]
 
-[1]: https://github.com/elliottsam/winrm-dns-client
+[1]: https://github.com/Bourne-ID/winrm-dns-client
 
 To update to support a new version of Terraform update govendor with the following command
 ```
-for i in $(govendor list | grep terraform | grep -v elliottsam | awk '{print $2}'); do govendor fetch "${i}@v0.9.1"; done
+for i in $(govendor list | grep terraform | grep -v Bourne-ID | awk '{print $2}'); do govendor fetch "${i}@v0.9.1"; done
 ```
