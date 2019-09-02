@@ -69,14 +69,7 @@ resource "windowsdns_record" "test99" {
 
 ## Importing Existing Resources
 
-Resources can be imported using the terraform import command
-```terraform import windows-dns 
-
-The library this uses can be found [here][1]
-
-[1]: https://github.com/Bourne-ID/winrmdns-client
-
-To update to support a new version of Terraform update govendor with the following command
+Preexisting resources can be imported using the terraform import command and specifiying the ID as `$domain|$name`, for example to point test.example.com:
 ```
-for i in $(govendor list | grep terraform | grep -v Bourne-ID | awk '{print $2}'); do govendor fetch "${i}@v0.9.1"; done
+terraform import windowsdns_record.arecord example.com|test
 ```
