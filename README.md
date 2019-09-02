@@ -12,13 +12,13 @@ Changes to this fork will break any Terraform usage on the parent fork - specifi
 ### Provider configuration
 ```
 provider "windows-dns" {
-        server_name = "dc.test.local"
+        server      = "dc.test.local"
         username    = "<username>"
         password    = "<password>"
 }
 ```
 ###### Required
-`server_name` - Server name or IP address of Microsoft DNS server
+`server` - Server name or IP address of Microsoft DNS server
 
 `username` - Username to authenticate
  
@@ -27,7 +27,7 @@ provider "windows-dns" {
 ------
 ### Resource configuration
 ```
-resource "windows-dns_record" "test99" {
+resource "windowsdns_record" "test99" {
         domain = "test.local"
         name   = "test99"
         type   = "A"
