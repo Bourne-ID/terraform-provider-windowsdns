@@ -183,8 +183,8 @@ func resourceDNSRecordDelete(d *schema.ResourceData, m interface{}) error {
 }
 
 func resourceDNSRecordExists(d *schema.ResourceData, m interface{}) (bool, error) {
-	mutex.Lock()
-	defer mutex.Unlock()
+	 mutex.Lock()
+	 defer mutex.Unlock()
 	client := m.(*dns.Client)
 
 	rec := dns.Record{
@@ -195,7 +195,13 @@ func resourceDNSRecordExists(d *schema.ResourceData, m interface{}) (bool, error
 		ID:      d.Id(),
 	}
 
-	if !client.RecordExist(rec) {
+	recordExist, err := client.RecordExist(rec)
+	
+	if err != nil {
+		return false, err
+	}
+	
+	if !recordExist {
 		return false, fmt.Errorf("Record not found: %v", rec)
 	}
 
