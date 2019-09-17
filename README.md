@@ -7,7 +7,7 @@ At present it only supports A and CNAME records over HTTP and HTTPS.
 
 ## Incompatibility with Parent Fork
 
-Changes to this fork will break any Terraform usage on the parent fork - specifically the ID field for Terraform has changed to help detect drift and be more flexible in a large environment.ds
+Changes to this fork will break any Terraform usage on the parent fork - specifically the ID field for Terraform has changed to help detect drift and be more flexible in a large environment
 
 ## Usage
 
