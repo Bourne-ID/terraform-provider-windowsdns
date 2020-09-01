@@ -195,15 +195,10 @@ func resourceDNSRecordExists(d *schema.ResourceData, m interface{}) (bool, error
 		ID:      d.Id(),
 	}
 
-	recordExist, err := client.RecordExist(rec)
-	
-	if err != nil {
-		return false, err
-	}
-	
-	if !recordExist {
-		return false, fmt.Errorf("Record not found: %v", rec)
-	}
 
-	return true, nil
+	the_bool := client.RecordExist(rec)
+	if the_bool {
+		return true, nil
+	}
+	return false, fmt.Errorf("Record not found: %v", rec)
 }
